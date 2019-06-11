@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import UploadForm from "./components/UploadForm";
+import UploadForm from './components/UploadForm/UploadForm';
 
-import { Section, Container, GlobalStyle, Content } from "./styled-components/wrappers/wrappers";
-import { Headline } from "./styled-components/components/headlines";
+import { GlobalStyle } from './assets/common/Global.style';
+import { Section, Content, Container } from './App.style';
+import ImagesList from './components/ImagesList/ImagesList';
 
 const App = () => {
   return (
@@ -11,9 +12,9 @@ const App = () => {
       <GlobalStyle />
       <Section>
         <Content>
-          <Headline>UPLOAD YOUR IMAGES</Headline>
           <Container>
             <UploadForm />
+            <ImagesList />
           </Container>
         </Content>
       </Section>

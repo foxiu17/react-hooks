@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
-
-import '../../assets/styles/_colors.sass';
-
 export const GlobalStyle = createGlobalStyle`
-  
+
   body {
     margin: 0;
     padding: 0;
