@@ -1,33 +1,21 @@
-import React from 'react';
-import { Content, Grid, Item, Image } from './ImagesList.style';
+import React from "react";
+import { Content, Grid, Item, Image } from "./ImagesList.style";
 
-const ImagesList = ({images}) => {
-
-  console.log(images);
+const ImagesList = ({ images }) => {
+  let imagesList = [];
+  if (images.length > 0) {
+    imagesList = images.map((image, index) => {
+      return (
+        <Item key={index}>
+          <Image src={image.url} alt="Image" />
+        </Item>
+      );
+    });
+  }
   return (
     <Content>
       <Grid>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
-        <Item>
-          <Image src="https://via.placeholder.com/350" alt="Image"></Image>
-        </Item>
+        {imagesList}
       </Grid>
     </Content>
   );

@@ -17,8 +17,6 @@ const App = () => {
   const handleImageSend = (event) => {
     event.preventDefault();
 
-    console.log(event.target.files[0]);
-
     let readFile = new FileReader();
     let file = event.target.files[0];
 
