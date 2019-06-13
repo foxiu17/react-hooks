@@ -1,7 +1,9 @@
 import React from 'react';
 import { Content, Grid, Item, Image } from './ImagesList.style';
 
-const ImagesList = () => {
+const ImagesList = ({images}) => {
+
+  console.log(images);
   return (
     <Content>
       <Grid>
