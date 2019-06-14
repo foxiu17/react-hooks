@@ -12,19 +12,25 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const upload = document.getElementById('upload').files[0];
+    const uploadFile = document.getElementById('fakeUpload');
+    let readFile = new FileReader();
+
+    uploadFile.value = upload.name;
+    readFile.onloadend = () => {
+      setImages([...images, { file: upload, url: readFile.result}]);
+    };
+
+    readFile.readAsDataURL(upload);
   }
 
   const handleImageSend = (event) => {
     event.preventDefault();
 
-    let readFile = new FileReader();
+    const uploadFile = document.getElementById('fakeUpload');
     let file = event.target.files[0];
-
-    readFile.onloadend = () => {
-      setImages([...images, { file: file, url: readFile.result}]);
-    };
-
-    readFile.readAsDataURL(file);
+    uploadFile.value = file.name;
   }
   return (
     <Fragment>
