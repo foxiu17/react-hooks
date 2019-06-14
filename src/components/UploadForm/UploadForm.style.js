@@ -15,6 +15,7 @@ export const Content = styled.div`
 
 export const Headline = styled.h1`
   ${commonHeadline}
+  letter-spacing: 4px;
 `;
 
 export const Submit = styled.button`
@@ -26,10 +27,6 @@ export const Form = styled.form`
   position: relative;
 `;
 
-export const Input = styled.input`
-  ${commonInput}
-`;
-
 export const FakeInputBox = styled.div`
   display: flex;
   position: absolute;
@@ -37,14 +34,20 @@ export const FakeInputBox = styled.div`
   left: 50%;
   justify-content: center;
   padding: 5px 0;
-  transform: translateX(-32%);
+  transform: translateX(-37%);
 `;
 
 export const InputFile = styled.input`
   ${commonInput}
   position: relative;
-  min-width: 199px
-  max-width: 199px;
+  min-width: 300px
+  max-width: 300px;
   opacity: 0;
   z-index: 2;
+`;
+
+export const Input = styled.input`
+  ${commonInput}
+  letter-spacing: 1.5px;
+  cursor: pointer;
 `;

@@ -11,5 +11,12 @@ export const Colors = {
   black: '#000000',
   tara: '#d5f2e2',
   casal: '#2f6276',
-  smaltBlue: '#518289'
+  smaltBlue: '#518289',
+  matisse: '#1D7AA7',
+  mischka: '#DDDDE4'
 };
+
+export const Fonts = {
+  Amatic: '"Amatic SC", cursive',
+  Dancing: '"Dancing Script", cursive'
+}

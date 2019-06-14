@@ -1,10 +1,13 @@
 import { css } from 'styled-components';
 
+import { Colors } from '../Variables.style';
+
 export const Section = css`
   display: block;
   width: 100%;
   min-height: 100vh;
-  background-color: #d5f2e2;
+  background-color: ${Colors.matisse};
+  background-image: linear-gradient(to top, ${Colors.matisse}, ${Colors.mischka});
 `;
 
 export const Container = css`

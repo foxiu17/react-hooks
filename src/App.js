@@ -23,6 +23,8 @@ const App = () => {
     };
 
     readFile.readAsDataURL(upload);
+
+    uploadFile.value = "Upload Image...";
   }
 
   const handleImageSend = (event) => {
@@ -32,6 +34,15 @@ const App = () => {
     let file = event.target.files[0];
     uploadFile.value = file.name;
   }
+
+  const removeImage = (removeIndex) => {
+    let imagesArr = images.filter((element, index) => {
+      return index !== removeIndex;
+    });
+
+    setImages([...imagesArr]);
+  }
+
   return (
     <Fragment>
       <GlobalStyle />
@@ -39,7 +50,7 @@ const App = () => {
         <Content>
           <Container>
             <UploadForm handleSubmit={handleSubmit} handleImageSend={handleImageSend} />
-            <ImagesList images={images} />
+            <ImagesList images={images} removeImage={removeImage} />
           </Container>
         </Content>
       </Section>

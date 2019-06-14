@@ -13,7 +13,15 @@ export const Grid = styled.div`
   ${commonGrid}
 `;
 
+export const RemoveButton = styled.div`
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
 export const Item = styled.div`
+  position: relative;
   width: 33.33%;
   padding: 10px;
   transition: .3s;
@@ -34,5 +42,6 @@ export const Item = styled.div`
 
 export const Image = styled.img`
   ${commonImage}
+  border-radius: 5px;
 `;
 

@@ -1,16 +1,18 @@
 import { css } from 'styled-components';
 
-import { Colors } from '../Variables.style';
+import { Colors, Fonts } from '../Variables.style';
 
 export const Input = css`
   max-width: 100%;
+  min-width: 300px;
   padding: 6px 15px;
-  border: 2px solid ${Colors.smaltBlue};
+  border: 0;
   border-radius: 2px;
-  background-color: ${Colors.tara};
-  color: ${Colors.smaltBlue};
-  font-size: 12px;
-  font-weight: 600;
+  background-color: ${Colors.mischka};
+  color: ${Colors.black};
+  font-family: ${Fonts.Amatic};
+  font-size: 16px;
+  font-weight: 700;
   appearance: none;
   cursor: pointer;
 `;

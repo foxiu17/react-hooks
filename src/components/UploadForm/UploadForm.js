@@ -5,7 +5,7 @@ import { Content, Headline, Submit, Input, InputFile, FakeInputBox, Form } from 
 const UploadForm = ({handleSubmit, handleImageSend}) => {
   return (
     <Content>
-      <Headline>UPLOAD YOUR IMAGES</Headline>
+      <Headline>Images Cloud</Headline>
       <Form onSubmit={(event) => handleSubmit(event)}>
         <InputFile type="file" onChange={(event) => handleImageSend(event)} id="upload" />
         <FakeInputBox>
@@ -13,10 +13,6 @@ const UploadForm = ({handleSubmit, handleImageSend}) => {
           <Submit type="submit" onClick={(event) => handleSubmit(event)} >Upload</Submit>
         </FakeInputBox>
       </Form>
-      {/* <form onSubmit={(event) => handleSubmit(event)}>
-        <Input type="file" onChange={(event) => handleImageSend(event)} />
-        <Submit type="submit" onClick={(event) => handleSubmit(event)} >Upload</Submit>
-      </form> */}
     </Content>
   );
 };
