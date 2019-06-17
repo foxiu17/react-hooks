@@ -13,7 +13,9 @@ export const Colors = {
   casal: '#2f6276',
   smaltBlue: '#518289',
   matisse: '#1D7AA7',
-  mischka: '#DDDDE4'
+  mischka: '#DDDDE4',
+  red: '#FF0000',
+  roofTerracotta: '#B21F1F',
 };
 
 export const Fonts = {

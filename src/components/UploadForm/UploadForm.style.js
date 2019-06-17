@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Colors } from '../../assets/Variables.style';
+import { Media } from '../../assets/Mixins.style';
 
 import { Content as commonContent } from '../../assets/common/Wrappers.style';
 import { Headline as commonHeadline } from '../../assets/common/Headlines.style';
@@ -21,10 +22,15 @@ export const Headline = styled.h1`
 export const Submit = styled.button`
   ${commonSubmit}
   margin-left: 20px;
+
+  ${Media.sm`
+    margin: 20px 0;
+  `}
 `;
 
 export const Form = styled.form`
   position: relative;
+  max-width: 100%;
 `;
 
 export const FakeInputBox = styled.div`
@@ -35,19 +41,38 @@ export const FakeInputBox = styled.div`
   justify-content: center;
   padding: 5px 0;
   transform: translateX(-37%);
+
+  ${Media.sm`
+    left: 0%;
+    flex-wrap: wrap;
+    width: 100%;
+    transform: translateX(0%);
+  `}
 `;
 
 export const InputFile = styled.input`
   ${commonInput}
   position: relative;
-  min-width: 300px
   max-width: 300px;
+  min-width: 300px;
   opacity: 0;
   z-index: 2;
+
+  ${Media.sm`
+    width: 100%;
+    max-width: 100%;
+    min-width: 200px;
+  `}
 `;
 
 export const Input = styled.input`
   ${commonInput}
+  min-width: 300px;
   letter-spacing: 1.5px;
   cursor: pointer;
+
+  ${Media.sm`
+    width: 100%;
+    min-width: 200px;
+  `}
 `;

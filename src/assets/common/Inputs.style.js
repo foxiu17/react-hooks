@@ -4,7 +4,6 @@ import { Colors, Fonts } from '../Variables.style';
 
 export const Input = css`
   max-width: 100%;
-  min-width: 300px;
   padding: 6px 15px;
   border: 0;
   border-radius: 2px;

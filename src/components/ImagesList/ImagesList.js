@@ -1,17 +1,19 @@
 import React from "react";
-import { Content, Grid, Item, RemoveButton, Image } from "./ImagesList.style";
+import { Content, Grid, Item, RemoveButton, Image, DateLabel } from "./ImagesList.style";
 
 const ImagesList = ({ images, removeImage }) => {
   let imagesList = [];
   if (images.length > 0) {
     imagesList = images.map((image, index) => {
       return (
-        <Item key={index} onClick={() => removeImage(index)}>
-          <RemoveButton>
+        <Item key={index} >
+          <RemoveButton onClick={() => removeImage(index)}>
             X
           </RemoveButton>
-          {index}
           <Image src={image.url} alt="Image"></Image>
+          <DateLabel>
+            {image.date}
+          </DateLabel>
         </Item>
       );
     });

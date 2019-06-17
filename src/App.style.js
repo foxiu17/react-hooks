@@ -12,6 +12,7 @@ export const Section = styled.div`
 
 export const Content = styled.div`
   ${commonContent}
+  padding: 0 0 30px 0;
 `;
 
 export const Container = styled.div`

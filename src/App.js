@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react';
 
 import UploadForm from './components/UploadForm/UploadForm';
+import ImagesList from './components/ImagesList/ImagesList';
+
+import { CurrentDate } from './assets/scripts/CurrentDate';
 
 import { GlobalStyle } from './assets/common/Global.style';
 import { Section, Content, Container } from './App.style';
-import ImagesList from './components/ImagesList/ImagesList';
 
 const App = () => {
 
@@ -16,10 +18,12 @@ const App = () => {
     const upload = document.getElementById('upload').files[0];
     const uploadFile = document.getElementById('fakeUpload');
     let readFile = new FileReader();
+    let date = CurrentDate();
+    console.log(date);
 
     uploadFile.value = upload.name;
     readFile.onloadend = () => {
-      setImages([...images, { file: upload, url: readFile.result}]);
+      setImages([...images, { file: upload, url: readFile.result, date: date}]);
     };
 
     readFile.readAsDataURL(upload);
