@@ -1,7 +1,7 @@
 import React from "react";
 import { Content, Grid, Item, RemoveButton, Image, DateLabel } from "./ImagesList.style";
 
-const ImagesList = ({ images, removeImage }) => {
+const ImagesList = ({ images, removeImage, data }) => {
   let imagesList = [];
   if (images.length > 0) {
     imagesList = images.map((image, index) => {
@@ -18,6 +18,8 @@ const ImagesList = ({ images, removeImage }) => {
       );
     });
   }
+
+  console.log(data);
   return (
     <Content>
       <Grid>
