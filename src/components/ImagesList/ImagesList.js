@@ -1,10 +1,13 @@
 import React from "react";
+
+import timeConverter from '../../assets/scripts/TimeConverter';
+
 import { Content, Grid, Item, RemoveButton, Image, DateLabel } from "./ImagesList.style";
 
 const ImagesList = ({ images, removeImage, data }) => {
   let imagesList = [];
-  if (images.length > 0) {
-    imagesList = images.map((image, index) => {
+  if (Object.entries(data).length !== 0) {
+    imagesList = data.images.map((image, index) => {
       return (
         <Item key={index} >
           <RemoveButton onClick={() => removeImage(index)}>
@@ -12,14 +15,12 @@ const ImagesList = ({ images, removeImage, data }) => {
           </RemoveButton>
           <Image src={image.url} alt="Image"></Image>
           <DateLabel>
-            {image.date}
+            {timeConverter(image.date)}
           </DateLabel>
         </Item>
       );
     });
   }
-
-  console.log(data);
   return (
     <Content>
       <Grid>
