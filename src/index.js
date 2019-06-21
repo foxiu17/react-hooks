@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { ApolloProvider } from 'react-apollo';
+// import {IntlProvider} from "react-intl";
 import { client } from './Client';
+
+import App from './App';
+import { IntlProviderWrapper } from './Intl';
 
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<ApolloProvider client={client}><App /></ApolloProvider>, document.getElementById('root'));
+ReactDOM.render(
+  <IntlProviderWrapper>
+    <ApolloProvider client={client}><App /></ApolloProvider>
+  </IntlProviderWrapper>
+  , document.getElementById('root'));
 registerServiceWorker();

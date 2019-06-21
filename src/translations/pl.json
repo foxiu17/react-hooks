@@ -1,0 +1,9 @@
+{
+  "app.title": "Foto chmurka",
+  "buttons.submit": "Dodaj",
+  "form.fileUpload": "Wgraj zdjęcie...",
+
+  "alerts.waiting": "Proszę czekać...",
+  "alerts.error": "Ups! Coś poszło nie tak...!",
+  "alerts.loadingData": "Ładowanie danych, proszę czekać..."
+}

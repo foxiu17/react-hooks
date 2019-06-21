@@ -4,7 +4,7 @@ import { Colors } from '../../assets/Variables.style';
 import { Media } from '../../assets/Mixins.style';
 
 import { Content as commonContent } from '../../assets/common/Wrappers.style';
-import { Headline as commonHeadline } from '../../assets/common/Headlines.style';
+import { Headline as commonHeadline, Headline4 as commonHeadline4 } from '../../assets/common/Headlines.style';
 import { Submit as commonSubmit } from '../../assets/common/Buttons.style';
 import { Input as commonInput } from '../../assets/common/Inputs.style';
 
@@ -17,6 +17,11 @@ export const Content = styled.div`
 export const Headline = styled.h1`
   ${commonHeadline}
   letter-spacing: 4px;
+`;
+
+export const Headline4 = styled.h4`
+  ${commonHeadline4}
+  padding-top: 30px;
 `;
 
 export const Submit = styled.button`
