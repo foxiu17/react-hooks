@@ -20,7 +20,6 @@ const GET_IMAGES = gql`
 `;
 
 const App = () => {
-  const [images, setImages] = useState([]);
 
   const handleImageSend = event => {
     event.preventDefault();
@@ -28,14 +27,6 @@ const App = () => {
     const uploadFile = document.getElementById('fakeUpload');
     let file = event.target.files[0];
     uploadFile.value = file.name;
-  };
-
-  const removeImage = removeIndex => {
-    let imagesArr = images.filter((element, index) => {
-      return index !== removeIndex;
-    });
-
-    setImages([...imagesArr]);
   };
 
   return (
@@ -56,7 +47,7 @@ const App = () => {
                   {error &&
                     <Headline><FormattedMessage id="alerts.error" defaultMessage="Ups! Something went wrong...!" /></Headline>
                   }
-                  <ImagesList images={images} removeImage={removeImage} data={data} />
+                  <ImagesList data={data} />
                 </Container>
               </Content>
             </Section>

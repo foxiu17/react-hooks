@@ -4,6 +4,7 @@ import { Media } from '../../assets/Mixins.style';
 
 import { Content as commonContent, Grid as commonGrid } from '../../assets/common/Wrappers.style';
 import { Image as commonImage } from '../../assets/common/Images.style';
+import { Headline3 as commonHeadline3 } from '../../assets/common/Headlines.style';
 import { Colors } from '../../assets/Variables.style';
 
 export const Content = styled.div`
@@ -78,5 +79,9 @@ export const Item = styled.div`
 export const Image = styled.img`
   ${commonImage}
   border-radius: 5px;
+`;
+
+export const Headline3 = styled.h3`
+  ${commonHeadline3}
 `;
 
