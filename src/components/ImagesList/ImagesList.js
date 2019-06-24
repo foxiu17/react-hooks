@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Lightbox from 'react-image-lightbox';
 
-
 import timeConverter from "../../assets/scripts/TimeConverter";
 
 import {
@@ -22,7 +21,6 @@ const ImagesList = ({ data }) => {
       imagesList = []
     );
   } else if (Object.entries(data).length !== 0) {
-    console.log(data.images);
     imagesList = data.images.map((image, index) => {
       return (
         <Item key={index}>
