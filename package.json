@@ -10,6 +10,7 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
     "react-dom": "^16.8.6",
+    "react-image-lightbox": "^5.1.0",
     "react-intl": "^2.9.0",
     "react-scripts": "1.1.4"
   },

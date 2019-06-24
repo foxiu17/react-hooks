@@ -6,6 +6,8 @@ import { client } from './Client';
 import App from './App';
 import { IntlProviderWrapper } from './Intl';
 
+import 'react-image-lightbox/style.css';
+
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
