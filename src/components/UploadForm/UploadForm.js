@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { FormattedMessage } from "react-intl";
 
 import { client } from "../../Client";
+import LoaderComponent from '../Loader/Loader';
 
 import {
   Content,
@@ -102,9 +103,7 @@ const UploadForm = ({ handleImageSend }) => {
             </FakeInputBox>
           </Form>
           {loading && (
-            <Headline4>
-              <FormattedMessage id="alerts.waiting" defaultMessage="Waiting..." />
-            </Headline4>
+            <LoaderComponent text={{id: 'alerts.waiting', default: 'Waiting...'}} wrapper={false} />
           )}
           {error && <Headline4><FormattedMessage id="alerts.error" defaultMessage="Ups! Something went wrong...!" /></Headline4>}
         </Content>

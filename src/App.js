@@ -1,13 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { FormattedMessage } from 'react-intl';
 
 import UploadForm from './components/UploadForm/UploadForm';
 import ImagesList from './components/ImagesList/ImagesList';
+import LoaderComponent from './components/Loader/Loader';
 
 import { GlobalStyle } from './assets/common/Global.style';
-import { Section, Content, Container, Headline } from './App.style';
+import { Section, Content, Container, Headline4 } from './App.style';
 
 const GET_IMAGES = gql`
   {
@@ -20,7 +21,6 @@ const GET_IMAGES = gql`
 `;
 
 const App = () => {
-
   const handleImageSend = event => {
     event.preventDefault();
 
@@ -38,15 +38,18 @@ const App = () => {
             <Section>
               <Content>
                 <Container>
-                  <UploadForm
-                    handleImageSend={handleImageSend}
-                  />
-                  {loading &&
-                    <Headline><FormattedMessage id="alerts.loadingData" defaultMessage="Loading data, wait, please..." /></Headline>
-                  }
-                  {error &&
-                    <Headline><FormattedMessage id="alerts.error" defaultMessage="Ups! Something went wrong...!" /></Headline>
-                  }
+                  <UploadForm handleImageSend={handleImageSend} />
+                  {loading && (
+                    <LoaderComponent text={{id: "alerts.loadingData", default: "Loading data, please wait..."}} wrapper={true} />
+                  )}
+                  {error && (
+                    <Headline4>
+                      <FormattedMessage
+                        id="alerts.error"
+                        defaultMessage="Ups! Something went wrong...!"
+                      />
+                    </Headline4>
+                  )}
                   <ImagesList data={data} />
                 </Container>
               </Content>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Colors } from '../../assets/Variables.style';
+// import { Colors } from '../../assets/Variables.style';
 import { Media } from '../../assets/Mixins.style';
 
 import { Content as commonContent } from '../../assets/common/Wrappers.style';

@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import {
   Section as commonSection,
   Content as commonContent,
-  Container as commonContainer
+  Container as commonContainer,
 } from './assets/common/Wrappers.style';
-import { Headline as commonHeadline } from './assets/common/Headlines.style';
+import { Headline4 as commonHeadline4 } from './assets/common/Headlines.style';
+
+import { Fonts } from './assets/Variables.style';
 
 export const Section = styled.div`
   ${commonSection}
@@ -20,9 +22,10 @@ export const Container = styled.div`
   ${commonContainer}
 `;
 
-export const Headline = styled.h1`
-  ${commonHeadline}
-  font-size: 46px;
-  font-family: Arial, Helvetica, sans-serif;
+export const Headline4 = styled.h1`
+  ${commonHeadline4}
+  font-family: ${Fonts.Amatic};
   text-align: center;
 `;
+
+

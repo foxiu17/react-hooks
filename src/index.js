@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
-// import {IntlProvider} from "react-intl";
 import { client } from './Client';
 
 import App from './App';
