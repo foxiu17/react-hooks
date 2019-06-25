@@ -2,10 +2,13 @@ import styled from 'styled-components';
 
 import { Media } from '../../assets/Mixins.style';
 
-import { Content as commonContent, Grid as commonGrid } from '../../assets/common/Wrappers.style';
+import {
+  Content as commonContent,
+  Grid as commonGrid
+} from '../../assets/common/Wrappers.style';
 import { Image as commonImage } from '../../assets/common/Images.style';
 import { Headline3 as commonHeadline3 } from '../../assets/common/Headlines.style';
-import { Colors } from '../../assets/Variables.style';
+import { Colors, Fonts } from '../../assets/Variables.style';
 
 export const Content = styled.div`
   ${commonContent}
@@ -25,7 +28,7 @@ export const RemoveButton = styled.div`
   top: 20px;
   right: 20px;
   padding: 3px 5px;
-  transition: .2s;
+  transition: 0.2s;
   border-radius: 3px;
   background-color: ${Colors.red};
   color: ${Colors.white};
@@ -44,7 +47,7 @@ export const DateLabel = styled.div`
   left: 10px;
   width: calc(100% - 20px);
   padding: 20px;
-  background-color: rgba(0, 0, 0, .45);
+  background-color: rgba(0, 0, 0, 0.45);
   color: ${Colors.white};
   text-align: center;
 `;
@@ -54,16 +57,15 @@ export const Item = styled.div`
   width: 33.33%;
   margin-bottom: 10px;
   padding: 10px;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
 
   &:hover {
     transform: scale(1.05);
-    opacity: .8;
+    opacity: 0.8;
   }
 
-  &:hover ${RemoveButton},
-  &:hover ${DateLabel} {
+  &:hover ${RemoveButton}, &:hover ${DateLabel} {
     display: block;
   }
 
@@ -83,5 +85,5 @@ export const Image = styled.img`
 
 export const Headline3 = styled.h3`
   ${commonHeadline3}
+  font-family: ${Fonts.Amatic};
 `;
-

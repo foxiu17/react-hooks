@@ -6,5 +6,6 @@
 
   "alerts.waiting": "Waiting...",
   "alerts.error": "Error! Something went wrong...!",
-  "alerts.loadingData": "Loading data, wait, please"
+  "alerts.loadingData": "Loading data, wait, please",
+  "alerts.emptyImages": "Images not found"
 }

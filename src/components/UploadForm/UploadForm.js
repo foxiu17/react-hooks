@@ -1,9 +1,10 @@
-import React from "react";
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
-import { FormattedMessage } from "react-intl";
+import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+import { FormattedMessage } from 'react-intl';
+import uniqid from 'uniqid';
 
-import { client } from "../../Client";
+import { client } from '../../Client';
 import LoaderComponent from '../Loader/Loader';
 
 import {
@@ -15,14 +16,15 @@ import {
   InputFile,
   FakeInputBox,
   Form
-} from "./UploadForm.style";
+} from './UploadForm.style';
 
 const ADD_IMAGE = gql`
-  mutation ADD_IMAGE($file: String!, $url: String!, $date: String!) {
-    addImage(imageInput: { file: $file, url: $url, date: $date }) {
+  mutation ADD_IMAGE($file: String!, $url: String!, $date: String!, $uniq: String!) {
+    addImage(imageInput: { file: $file, url: $url, date: $date, uniq: $uniq }) {
       file
       url
       date
+      uniq
     }
   }
 `;
@@ -33,29 +35,30 @@ const GET_IMAGES = gql`
       file
       url
       date
+      uniq
     }
   }
 `;
 
-const handleSubmit = (event, updateImages, input) => {
+const handleSubmit = (event, addImage, input) => {
   event.preventDefault();
-  const upload = document.getElementById("upload").files[0];
-  const uploadFile = document.getElementById("fakeUpload");
+  const upload = document.getElementById('upload').files[0];
+  const uploadFile = document.getElementById('fakeUpload');
   let readFile = new FileReader();
   let dateISOS = new Date().toISOString();
 
   if (upload !== undefined) {
     uploadFile.value = upload.name;
     readFile.onloadend = () => {
-      updateImages({
-        variables: { file: upload.name, url: readFile.result, date: dateISOS }
+      addImage({
+        variables: { file: upload.name, url: readFile.result, date: dateISOS, uniq: uniqid() }
       });
     };
 
     readFile.readAsDataURL(upload);
-    uploadFile.value = "Upload Image...";
+    uploadFile.value = 'Upload Image...';
   } else {
-    uploadFile.value = "Nie wybrano pliku...";
+    uploadFile.value = 'Nie wybrano pliku...';
   }
 };
 
@@ -73,7 +76,7 @@ const UploadForm = ({ handleImageSend }) => {
         });
       }}
     >
-      {(updateImages, { loading, error, data }) => (
+      {(addImage, { loading, error, data }) => (
         <Content>
           <Headline>
             <FormattedMessage id="app.title" defaultMessage="Images Cloud">
@@ -82,7 +85,7 @@ const UploadForm = ({ handleImageSend }) => {
           </Headline>
           <Form
             onSubmit={event => {
-              handleSubmit(event, updateImages, input);
+              handleSubmit(event, addImage, input);
             }}
           >
             <InputFile
@@ -99,13 +102,25 @@ const UploadForm = ({ handleImageSend }) => {
                 id="fakeUpload"
                 placeholder="Upload image..."
               />
-              <Submit type="submit"><FormattedMessage id="buttons.submit" defaultMessage="Submit" /></Submit>
+              <Submit type="submit">
+                <FormattedMessage id="buttons.submit" defaultMessage="Submit" />
+              </Submit>
             </FakeInputBox>
           </Form>
           {loading && (
-            <LoaderComponent text={{id: 'alerts.waiting', default: 'Waiting...'}} wrapper={false} />
+            <LoaderComponent
+              text={{ id: 'alerts.waiting', default: 'Waiting...' }}
+              wrapper={false}
+            />
           )}
-          {error && <Headline4><FormattedMessage id="alerts.error" defaultMessage="Ups! Something went wrong...!" /></Headline4>}
+          {error && (
+            <Headline4>
+              <FormattedMessage
+                id="alerts.error"
+                defaultMessage="Ups! Something went wrong...!"
+              />
+            </Headline4>
+          )}
         </Content>
       )}
     </Mutation>

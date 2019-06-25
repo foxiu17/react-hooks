@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 import { FormattedMessage } from 'react-intl';
 
 import UploadForm from './components/UploadForm/UploadForm';
@@ -16,6 +16,7 @@ const GET_IMAGES = gql`
       file
       url
       date
+      uniq
     }
   }
 `;
