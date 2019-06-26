@@ -5,8 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { Wrapper, Content, Headline4 } from './Loader.style';
 
 const LoaderComponent = ({text, wrapper}) => {
-  console.log(text);
-  console.log(wrapper);
   return (
     <Fragment>
       {wrapper === true && (
