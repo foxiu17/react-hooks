@@ -14,11 +14,14 @@
     "react-image-lightbox": "^5.1.0",
     "react-intl": "^2.9.0",
     "react-scripts": "3.0.1",
-    "uniqid": "^5.0.3"
+    "uniqid": "^5.0.3",
+    "workbox-build": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run build-sw && npm run clean-cra-sw",
+    "build-sw": "node ./src/sw-build.js",
+    "clean-cra-sw": "rm -f build/precache-manifest.*.js && rm -f build/service-worker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook"
@@ -26,8 +29,19 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@storybook/react": "^5.1.9",
-    "babel-loader": "^8.0.6",
     "react-loader-spinner": "^2.3.0",
     "styled-components": "^4.3.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
