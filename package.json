@@ -2,9 +2,11 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://foxiu17.github.io/react-hooks/",
   "dependencies": {
     "@types/storybook__react": "^4.0.2",
     "apollo-boost": "^0.4.3",
+    "gh-pages": "^2.0.1",
     "graphql": "^14.3.1",
     "node-sass": "^4.12.0",
     "object-hash": "^1.3.1",
@@ -18,10 +20,11 @@
     "workbox-build": "^4.3.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run build-sw && npm run clean-cra-sw",
+    "build": "react-scripts build && npm run build-sw",
     "build-sw": "node ./src/sw-build.js",
-    "clean-cra-sw": "rm -f build/precache-manifest.*.js && rm -f build/service-worker.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook"
