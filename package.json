@@ -23,7 +23,10 @@
     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "build-sw": "node ./src/sw-build.js",
+=======
+>>>>>>> parent of 27eabef... workbox service worker
 =======
 >>>>>>> parent of 27eabef... workbox service worker
     "build": "react-scripts build",
