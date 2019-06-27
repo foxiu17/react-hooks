@@ -24,8 +24,12 @@
     "start": "react-scripts start",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "build": "react-scripts build && npm run build-sw",
     "build-sw": "node ./src/sw-build.js",
+=======
+    "build": "react-scripts build",
+>>>>>>> parent of 27eabef... workbox service worker
 =======
     "build": "react-scripts build",
 >>>>>>> parent of 27eabef... workbox service worker
