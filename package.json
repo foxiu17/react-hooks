@@ -22,7 +22,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
+<<<<<<< HEAD
     "build-sw": "node ./src/sw-build.js",
+=======
+>>>>>>> parent of 27eabef... workbox service worker
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
