@@ -9,6 +9,7 @@ import LoaderComponent from "./components/Loader/Loader";
 
 import { GlobalStyle } from "./assets/common/Global.style";
 import { Section, Content, Container, Headline4 } from "./App.style";
+import Navigation from './components/Navigation/Navigation';
 
 const GET_IMAGES = gql`
   {
@@ -38,6 +39,7 @@ const App = () => {
             <GlobalStyle />
             <Section>
               <Content>
+                <Navigation />
                 <Container>
                   <UploadForm handleImageSend={handleImageSend} />
                   {loading && (

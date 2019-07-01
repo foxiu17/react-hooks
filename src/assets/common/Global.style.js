@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { Colors } from '../Variables.style';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -14,5 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+  }
+
+  .MuiTab-textColorInherit.Mui-selected {
+    border: 0;
+    border-bottom: 2px solid ${Colors.white};
   }
 `;
