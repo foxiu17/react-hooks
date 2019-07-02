@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { makeStyles } from '@material-ui/styles';
+import { styled as materialStyled } from '@material-ui/styles';
+
+import AppBar from '@material-ui/core/AppBar';
 
 import { Colors } from '../../assets/Variables.style';
 
 export const NavWrapper = styled.div`
   display: block;
   width: 100%;
-  background-color: ${Colors.matisse};
 `;
 
-export const useStyles = makeStyles({
-  wrapper: {
-    backgroundColor: `${Colors.matisse}`,
-  }
+export const NavBar = materialStyled(AppBar)({
+  background: `${Colors.matisse}`,
 });
