@@ -7,11 +7,14 @@ import { Mutation } from "react-apollo";
 import { client } from "../../Client";
 import timeConverter from "../../assets/scripts/TimeConverter";
 
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 import {
   Content,
   Grid,
   Item,
   RemoveButton,
+  FavouriteButton,
   Image,
   DateLabel,
   Headline3
@@ -39,7 +42,7 @@ const REMOVE_IMAGE = gql`
   }
 `;
 
-const ImagesList = ({ data, loading, error }) => {
+const ImagesList = ({ data, loading, error, favoriteImages }) => {
   const [photoIndex, updatePhotoIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   let imagesList = [];
@@ -67,6 +70,9 @@ const ImagesList = ({ data, loading, error }) => {
               >
                 X
               </RemoveButton>
+              <FavouriteButton>
+                <FavoriteIcon onClick={() => favoriteImages(image)} />
+              </FavouriteButton>
               <Image
                 src={image.url}
                 alt="Image"

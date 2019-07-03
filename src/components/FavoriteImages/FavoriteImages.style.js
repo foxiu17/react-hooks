@@ -22,24 +22,6 @@ export const Grid = styled.div`
   ${commonGrid}
 `;
 
-export const RemoveButton = styled.div`
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 3px 5px;
-  transition: 0.2s;
-  border-radius: 3px;
-  background-color: ${Colors.red};
-  color: ${Colors.white};
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-
-  &:hover {
-    background-color: ${Colors.roofTerracotta};
-  }
-`;
-
 export const FavouriteButton = styled.div`
   display: none;
   position: absolute;
@@ -81,7 +63,7 @@ export const Item = styled.div`
     opacity: 0.8;
   }
 
-  &:hover ${RemoveButton}, &:hover ${DateLabel}, &:hover ${FavouriteButton} {
+  &:hover ${DateLabel}, &:hover ${FavouriteButton} {
     display: block;
   }
 

@@ -20,7 +20,6 @@ const Navigation = ({ content, handleChange }) => {
           variant="scrollable"
           scrollButtons="on"
           indicatorColor="default"
-          // textColor="primary"
         >
           <Tab icon={<HomeIcon />} aria-label="Home" />
           <Tab icon={<FavoriteIcon />} aria-label="Favorite" />
