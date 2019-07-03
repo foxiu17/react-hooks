@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { FormattedMessage } from "react-intl";
@@ -15,6 +15,12 @@ import Navigation from "./components/Navigation/Navigation";
 const GET_IMAGES = gql`
   {
     images {
+      file
+      url
+      date
+      uniq
+    }
+    favoriteImages{
       file
       url
       date
@@ -46,8 +52,10 @@ const App = () => {
   };
 
   return (
-    <Query query={GET_IMAGES}>
+    <Query query={GET_IMAGES} pollInterval={500}>
       {({ loading, error, data }) => {
+        console.log(data);
+
         return (
           <Fragment>
             <GlobalStyle />
@@ -78,7 +86,7 @@ const App = () => {
                       </Headline4>
                     )}
                     <ImagesList
-                      data={data}
+                      data={data.images}
                       loading={loading}
                       error={error}
                       favoriteImages={addToFavorite}
@@ -89,7 +97,7 @@ const App = () => {
                   <>
                     <Container>
                       <Headline4>Favorite photos</Headline4>
-                      <FavoriteImages data={favoriteImages} />
+                      <FavoriteImages data={data.favoriteImages} />
                     </Container>
                   </>
                 )}

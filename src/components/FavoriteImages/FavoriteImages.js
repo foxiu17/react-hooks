@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Lightbox from "react-image-lightbox";
-import { FormattedMessage } from "react-intl";
+import React, { useState, useCallback } from 'react';
+import Lightbox from 'react-image-lightbox';
+import { FormattedMessage } from 'react-intl';
 
-import timeConverter from "../../assets/scripts/TimeConverter";
+import timeConverter from '../../assets/scripts/TimeConverter';
 
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import {
   Content,
@@ -14,11 +14,12 @@ import {
   Image,
   DateLabel,
   Headline3
-} from "./FavoriteImages.style";
+} from './FavoriteImages.style';
 
 const FavoriteImages = ({ data, loading, error, favoriteImages }) => {
   const [photoIndex, updatePhotoIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  
   let imagesList = [];
   console.log(data);
   if (data === undefined) {

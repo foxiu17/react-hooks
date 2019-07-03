@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Lightbox from "react-image-lightbox";
-import { FormattedMessage } from "react-intl";
-import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import React, { useState, useCallback } from 'react';
+import Lightbox from 'react-image-lightbox';
+import { FormattedMessage } from 'react-intl';
+import { Mutation } from 'react-apollo';
 
-import { client } from "../../Client";
-import timeConverter from "../../assets/scripts/TimeConverter";
+import { client } from '../../Client';
+import timeConverter from '../../assets/scripts/TimeConverter';
+import { GET_IMAGES, REMOVE_IMAGE, ADD_FAVORITE, GET_FAVORITE } from './gql';
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -18,45 +18,27 @@ import {
   Image,
   DateLabel,
   Headline3
-} from "./ImagesList.style";
-
-const GET_IMAGES = gql`
-  {
-    images {
-      file
-      url
-      date
-      uniq
-    }
-  }
-`;
-
-const REMOVE_IMAGE = gql`
-  mutation REMOVE_IMAGE($uniq: String!) {
-    removeImage(uniq: $uniq) {
-      file
-      url
-      date
-      uniq
-    }
-  }
-`;
+} from './ImagesList.style';
 
 const ImagesList = ({ data, loading, error, favoriteImages }) => {
   const [photoIndex, updatePhotoIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
   let imagesList = [];
   if (data === undefined) {
     return (imagesList = []);
   } else if (Object.entries(data).length !== 0) {
-    imagesList = data.images.map((image, index) => {
+    imagesList = data.map((image, index) => {
       return (
         <Mutation
           key={index}
           mutation={REMOVE_IMAGE}
           update={(cache, { data: { removeImage } }) => {
             const { images } = client.readQuery({ query: GET_IMAGES });
-            const newImages = images.filter(image => image.uniq !== removeImage.uniq);
+            const newImages = images.filter(
+              image => image.uniq !== removeImage.uniq
+            );
             client.writeQuery({
               query: GET_IMAGES,
               data: { images: newImages }
@@ -64,25 +46,44 @@ const ImagesList = ({ data, loading, error, favoriteImages }) => {
           }}
         >
           {(removeImage, { loading, error, data }) => (
-            <Item key={index}>
-              <RemoveButton
-                onClick={() => removeImage({ variables: { uniq: image.uniq } })}
-              >
-                X
-              </RemoveButton>
-              <FavouriteButton>
-                <FavoriteIcon onClick={() => favoriteImages(image)} />
-              </FavouriteButton>
-              <Image
-                src={image.url}
-                alt="Image"
-                onClick={() => {
-                  updatePhotoIndex(index);
-                  setIsLightboxOpen(true);
-                }}
-              />
-              <DateLabel>{timeConverter(image.date)}</DateLabel>
-            </Item>
+            <Mutation mutation={ADD_FAVORITE}>
+              {(addFavoriteImage, { data }) => (
+                <Item key={index}>
+                  <RemoveButton
+                    onClick={() =>
+                      removeImage({ variables: { uniq: image.uniq } })
+                    }
+                  >
+                    X
+                  </RemoveButton>
+                  <FavouriteButton>
+                    <FavoriteIcon
+                      onClick={() => {
+                        const date = new Date(parseInt(image.date, 10));
+                        addFavoriteImage({
+                          variables: {
+                            file: image.file,
+                            url: image.url,
+                            date: date.toISOString(),
+                            uniq: image.uniq
+                          }
+                        });
+                        forceUpdate();
+                      }}
+                    />
+                  </FavouriteButton>
+                  <Image
+                    src={image.url}
+                    alt="Image"
+                    onClick={() => {
+                      updatePhotoIndex(index);
+                      setIsLightboxOpen(true);
+                    }}
+                  />
+                  <DateLabel>{timeConverter(image.date)}</DateLabel>
+                </Item>
+              )}
+            </Mutation>
           )}
         </Mutation>
       );

@@ -46,6 +46,7 @@ const handleSubmit = (event, addImage, input) => {
   const uploadFile = document.getElementById('fakeUpload');
   let readFile = new FileReader();
   let dateISOS = new Date().toISOString();
+  console.log(dateISOS);
 
   if (upload !== undefined) {
     uploadFile.value = upload.name;
