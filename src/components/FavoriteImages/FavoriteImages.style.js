@@ -29,12 +29,12 @@ export const FavouriteButton = styled.div`
   left: 20px;
   padding: 3px 5px;
   transition: 0.2s;
-  color: ${Colors.white};
+  color: ${Colors.red};
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 
   &:hover {
-    color: ${Colors.red};
+    color: ${Colors.white};
   }
 `;
 

@@ -1,10 +1,14 @@
-import React, { useState, useCallback } from 'react';
-import Lightbox from 'react-image-lightbox';
-import { FormattedMessage } from 'react-intl';
+import React, { useState } from "react";
+import { Mutation } from "react-apollo";
+import Lightbox from "react-image-lightbox";
+import { FormattedMessage } from "react-intl";
 
-import timeConverter from '../../assets/scripts/TimeConverter';
+import { GET_FAVORITE, REMOVE_FAVORITE } from './gql';
 
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { client } from '../../Client';
+import timeConverter from "../../assets/scripts/TimeConverter";
+
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import {
   Content,
@@ -14,45 +18,67 @@ import {
   Image,
   DateLabel,
   Headline3
-} from './FavoriteImages.style';
+} from "./FavoriteImages.style";
 
-const FavoriteImages = ({ data, loading, error, favoriteImages }) => {
+
+
+const FavoriteImages = ({ data, loading, error }) => {
   const [photoIndex, updatePhotoIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  
-  let imagesList = [];
+
+  let favoriteList = [];
   console.log(data);
   if (data === undefined) {
-    return (imagesList = []);
+    return (favoriteList = []);
   } else if (Object.entries(data).length !== 0) {
-    imagesList = data.map((image, index) => {
+    favoriteList = data.map((image, index) => {
       return (
-        <Item key={index}>
-          <FavouriteButton>
-            <FavoriteIcon onClick={() => favoriteImages(image)} />
-          </FavouriteButton>
-          <Image
-            src={image.url}
-            alt="Image"
-            onClick={() => {
-              updatePhotoIndex(index);
-              setIsLightboxOpen(true);
-            }}
-          />
-          <DateLabel>{timeConverter(image.date)}</DateLabel>
-        </Item>
+        <Mutation 
+          key={index} 
+          mutation={REMOVE_FAVORITE}
+          update={(cache, { data: { removeFavoriteImage } }) => {
+            const { images } = client.readQuery({ query: GET_FAVORITE });
+            const newImages = images.filter(
+              image => image.uniq !== removeFavoriteImage.uniq
+            );
+            client.writeQuery({
+              query: GET_FAVORITE,
+              data: { images: newImages }
+            });
+          }}>
+          {(removeFavoriteImage, { loading, error, data }) => (
+            <Item>
+              <FavouriteButton>
+                <FavoriteIcon
+                  onClick={() => {
+                    removeFavoriteImage({ variables: { uniq: image.uniq } });
+                  }}
+                />
+              </FavouriteButton>
+              <Image
+                src={image.url}
+                alt="Image"
+                onClick={() => {
+                  updatePhotoIndex(index);
+                  setIsLightboxOpen(true);
+                }}
+              />
+              <DateLabel>{timeConverter(image.date)}</DateLabel>
+            </Item>
+          )}
+        </Mutation>
       );
     });
   }
   return (
     <Content>
       <Grid>
-        {imagesList.length === 0 && !loading && (
+        {favoriteList.length === 0 && !loading && (
           <Headline3>
             <FormattedMessage id="alerts.emptyImages" />
           </Headline3>
         )}
-        {imagesList.length > 0 && imagesList}
+        {favoriteList.length > 0 && favoriteList}
       </Grid>
 
       {isLightboxOpen === true && (

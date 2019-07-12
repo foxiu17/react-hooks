@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { FormattedMessage } from "react-intl";
@@ -31,8 +31,6 @@ const GET_IMAGES = gql`
 
 const App = () => {
   const [content, setContent] = useState(0);
-  const [favoriteImages, addFavoriteImage] = useState([]);
-  console.log(favoriteImages);
   const handleImageSend = event => {
     event.preventDefault();
 
@@ -45,17 +43,10 @@ const App = () => {
     setContent(newValue);
   };
 
-  const addToFavorite = image => {
-    console.log(`adding to favorite: `, image);
-    addFavoriteImage([...favoriteImages, image]);
-    console.log(favoriteImages);
-  };
-
   return (
-    <Query query={GET_IMAGES} pollInterval={500}>
+    <Query query={GET_IMAGES} pollInterval={100}>
       {({ loading, error, data }) => {
         console.log(data);
-
         return (
           <Fragment>
             <GlobalStyle />
@@ -81,15 +72,15 @@ const App = () => {
                       <Headline4>
                         <FormattedMessage
                           id="alerts.error"
-                          defaultMessage="Ups! Something went wrong...!"
+                          defaultMessage={`Ups! Something went wrong...!`}
                         />
                       </Headline4>
                     )}
+                    
                     <ImagesList
                       data={data.images}
                       loading={loading}
                       error={error}
-                      favoriteImages={addToFavorite}
                     />
                   </Container>
                 )}

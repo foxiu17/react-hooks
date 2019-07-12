@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import Lightbox from 'react-image-lightbox';
 import { FormattedMessage } from 'react-intl';
 import { Mutation } from 'react-apollo';
@@ -20,11 +20,9 @@ import {
   Headline3
 } from './ImagesList.style';
 
-const ImagesList = ({ data, loading, error, favoriteImages }) => {
+const ImagesList = ({ data, loading, error }) => {
   const [photoIndex, updatePhotoIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), []);
   let imagesList = [];
   if (data === undefined) {
     return (imagesList = []);
@@ -46,7 +44,16 @@ const ImagesList = ({ data, loading, error, favoriteImages }) => {
           }}
         >
           {(removeImage, { loading, error, data }) => (
-            <Mutation mutation={ADD_FAVORITE}>
+            <Mutation
+              mutation={ADD_FAVORITE}
+              update={(cache, { data: { addFavoriteImage } }) => {
+                const { images } = client.readQuery({ query: GET_FAVORITE });
+                
+                client.writeQuery({
+                  query: GET_FAVORITE,
+                  data: { images: images.concat([addFavoriteImage]) }
+                });
+              }}>
               {(addFavoriteImage, { data }) => (
                 <Item key={index}>
                   <RemoveButton
@@ -68,7 +75,6 @@ const ImagesList = ({ data, loading, error, favoriteImages }) => {
                             uniq: image.uniq
                           }
                         });
-                        forceUpdate();
                       }}
                     />
                   </FavouriteButton>
@@ -98,25 +104,26 @@ const ImagesList = ({ data, loading, error, favoriteImages }) => {
           </Headline3>
         )}
         {imagesList.length > 0 && imagesList}
+        {loading && undefined}
       </Grid>
 
       {isLightboxOpen === true && (
         <Lightbox
-          mainSrc={data.images[photoIndex].url}
-          nextSrc={data.images[(photoIndex + 1) % data.images.length].url}
+          mainSrc={data[photoIndex].url}
+          nextSrc={data[(photoIndex + 1) % data.length].url}
           prevSrc={
-            data.images[
-              (photoIndex + data.images.length - 1) % data.images.length
+            data[
+              (photoIndex + data.length - 1) % data.length
             ].url
           }
           onCloseRequest={() => setIsLightboxOpen(false)}
           onMovePrevRequest={() =>
             updatePhotoIndex(
-              (photoIndex + data.images.length - 1) % data.images.length
+              (photoIndex + data.length - 1) % data.length
             )
           }
           onMoveNextRequest={() =>
-            updatePhotoIndex((photoIndex + 1) % data.images.length)
+            updatePhotoIndex((photoIndex + 1) % data.length)
           }
         />
       )}

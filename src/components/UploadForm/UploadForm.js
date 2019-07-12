@@ -80,8 +80,7 @@ const UploadForm = ({ handleImageSend }) => {
       {(addImage, { loading, error, data }) => (
         <Content>
           <Headline>
-            <FormattedMessage id="app.title" defaultMessage="Images Cloud">
-              Images Cloud
+            <FormattedMessage id="app.title" defaultMessage={`Images Cloud`}>
             </FormattedMessage>
           </Headline>
           <Form
@@ -104,7 +103,7 @@ const UploadForm = ({ handleImageSend }) => {
                 placeholder="Upload image..."
               />
               <Submit type="submit">
-                <FormattedMessage id="buttons.submit" defaultMessage="Submit" />
+                <FormattedMessage id="buttons.submit" defaultMessage={`Submit`} />
               </Submit>
             </FakeInputBox>
           </Form>
@@ -118,7 +117,7 @@ const UploadForm = ({ handleImageSend }) => {
             <Headline4>
               <FormattedMessage
                 id="alerts.error"
-                defaultMessage="Ups! Something went wrong...!"
+                defaultMessage={`Ups! Something went wrong...!`}
               />
             </Headline4>
           )}
